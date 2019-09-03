@@ -96,6 +96,7 @@
 
                         {if $loggedUser->getTipo() == 0}
                             <li class="nav-item"><a class="nav-link" href="{path_for name="privacidade"}">Política de Privacidade</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{path_for name="avaliacao"}">Avaliação Docente</a></li>
                         {/if}
 
                         {if $loggedUser->getTipo() == 1}
