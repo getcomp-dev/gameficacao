@@ -36,6 +36,8 @@ $app->group('', function () {
     $this->get('/exportPDF/{id:[0-9]+}', '\App\Controller\AdminController:exportPDFAction')->setName('exportPDF');
 
     $this->get('/todas-oportunidades', '\App\Controller\OportunidadeController:verOportunidades')->setName('verOportunidades');
+    $this->get('/avaliacao-docente', '\App\Controller\OportunidadeController:avaliarDocente')->setName('avaliacao');
+    $this->post('/formulario', '\App\Controller\OportunidadeController:processarFormulario');
     $this->get('/sair-impersonar', '\App\Controller\AdminController:sairImpersonar')->setName('sairImpersonar');
 
     $this->group('/admin', function () {

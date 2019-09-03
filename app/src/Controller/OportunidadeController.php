@@ -59,6 +59,7 @@ class OportunidadeController
 
         $tipo = $request->getParsedBodyParam('tipo_oportunidade');
         $numeroVagas = $request->getParsedBodyParam('numero_vagas');
+
         $professor = $request->getParsedBodyParam('nome_professor');
         $descricao = $request->getParsedBodyParam('descricao');
         $validade = new \DateTime($request->getParsedBodyParam('validade'));
@@ -128,5 +129,25 @@ class OportunidadeController
         $arquivo->moveTo($this->container->settings['upload']['path'] . DIRECTORY_SEPARATOR . $oportunidade->getArquivo());
     }
 
+    public function avaliarDocente(Request $request, Response $response, $args)
+    {
+        $idUsuario = $_SESSION['id'];
+        $usuario = $this->container->usuarioDAO->getById($idUsuario);
+        $this->container->view['notificacoes'] = $this->container->usuarioDAO->getConvitesPendentes($usuario->getId());
+
+        $this->container->view['teste'] = "Top";
+
+        return $this->container->view->render($response, 'avaliar.tpl');
+    }
+
+    public function processarFormulario(Request $request, Response $response, $args)
+    {
+        $idUsuario = $_SESSION['id'];
+        $usuario = $this->container->usuarioDAO->getById($idUsuario);
+        $this->container->view['notificacoes'] = $this->container->usuarioDAO->getConvitesPendentes($usuario->getId());
+
+        $usuario->setNome("asdasd");
+        $this->container->usuarioDAO->save($usuario);
+    }
 }
 
